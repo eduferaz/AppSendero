@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "402877534267",
+    "project_id": "appsenderos-55af1",
+    "storage_bucket": "appsenderos-55af1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402877534267:android:cf056efdd8c190b73b4c1e",
+        "android_client_info": {
+          "package_name": "es.deveferaz.ilerna.appsenderos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402877534267-f94kc0vmjd9j8a9f6h6ocbjjvgvj2o90.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKiV-7tS2Nn5lUxqXD9yfT5Sz01T7xr1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402877534267-f94kc0vmjd9j8a9f6h6ocbjjvgvj2o90.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

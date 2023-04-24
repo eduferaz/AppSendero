@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">SENDERISMO SIERRA MORENA</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Inicio</string>
+    <string name="menu_favs">Favoritos</string>
+    <string name="menu_completados">Completados</string>
+    <string name="contrasenya">Contraseña</string>
+    <string name="login">Login</string>
+    <string name="registro">Registro</string>
+    <string name="descripcion">Descripción</string>
+    <string name="imagen">Imagen</string>
+    <string name="guardar">Guardar</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="repeat_password">Repite la contraseña</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="introduce_el_nombre">Introduce el nombre</string>
+    <string name="externo">Ubicación</string>
+    <string name="establecer_nombre">Debes poner un nombre</string>
+    <string name="rellenar_campos">Debes rellenar todos los campos</string>
+    <string name="seleccionar_municipio">Debes seleccionar un municipio</string>
+    <string name="contrasenyas_no_coinciden">Las contraseñas no coinciden</string>
+    <string name="error_crear_usuario">Error al crear el usuario</string>
+    <string name="sendero_existe">El nombre ya existe</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="ubicacion">Ubicación</string>
+    <string name="name">Nombre</string>
+    <string name="distancia">distancia en km</string>
+    <string name="alta_dificultad">Difícil</string>
+    <string name="media_dificultad">Medio</string>
+    <string name="baja_dificultad">Fácil</string>
+    <string name="show_distancia">%2.2f km</string>
+    <string name="latitud">Latitud</string>
+    <string name="longitud">Longitud</string>
+</resources>

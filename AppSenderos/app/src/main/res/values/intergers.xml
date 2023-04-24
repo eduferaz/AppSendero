@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="maximo_caracteres">20</integer>
+    <integer name="maximo_numero">13</integer>
+    <integer name="lineas">4</integer>
+    <integer name="columnasMostrar">1</integer>
+</resources>

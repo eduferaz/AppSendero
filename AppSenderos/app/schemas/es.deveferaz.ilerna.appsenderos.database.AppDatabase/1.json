@@ -1,0 +1,446 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "15632d14732df5f5eb7d7cd18b165c0a",
+    "entities": [
+      {
+        "tableName": "usuarios",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`nombre` TEXT NOT NULL, `password` TEXT, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `create_at` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "nombre",
+            "columnName": "nombre",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "password",
+            "columnName": "password",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createAt",
+            "columnName": "create_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_usuarios_nombre",
+            "unique": true,
+            "columnNames": [
+              "nombre"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_usuarios_nombre` ON `${TABLE_NAME}` (`nombre`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "senderos",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`nombre` TEXT NOT NULL, `descrpcion` TEXT NOT NULL, `ubicacion` TEXT NOT NULL, `imagen` TEXT NOT NULL, `distanciaKm` REAL NOT NULL, `id_municipio` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `create_at` INTEGER NOT NULL, FOREIGN KEY(`id_municipio`) REFERENCES `municipios`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "nombre",
+            "columnName": "nombre",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "descrpcion",
+            "columnName": "descrpcion",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ubicacion",
+            "columnName": "ubicacion",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imagen",
+            "columnName": "imagen",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "distanciaKm",
+            "columnName": "distanciaKm",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "municipioId",
+            "columnName": "id_municipio",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createAt",
+            "columnName": "create_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_senderos_nombre",
+            "unique": true,
+            "columnNames": [
+              "nombre"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_senderos_nombre` ON `${TABLE_NAME}` (`nombre`)"
+          },
+          {
+            "name": "index_senderos_id_municipio",
+            "unique": false,
+            "columnNames": [
+              "id_municipio"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_senderos_id_municipio` ON `${TABLE_NAME}` (`id_municipio`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "municipios",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "id_municipio"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "municipios",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`nombre` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `create_at` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "nombre",
+            "columnName": "nombre",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createAt",
+            "columnName": "create_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_municipios_nombre",
+            "unique": true,
+            "columnNames": [
+              "nombre"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_municipios_nombre` ON `${TABLE_NAME}` (`nombre`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "favoritos",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id_sendero` INTEGER NOT NULL, `id_usuario` INTEGER NOT NULL, PRIMARY KEY(`id_usuario`, `id_sendero`), FOREIGN KEY(`id_sendero`) REFERENCES `senderos`(`id`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`id_usuario`) REFERENCES `usuarios`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "senderoId",
+            "columnName": "id_sendero",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "usuarioId",
+            "columnName": "id_usuario",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id_usuario",
+            "id_sendero"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_favoritos_id_usuario",
+            "unique": false,
+            "columnNames": [
+              "id_usuario"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_favoritos_id_usuario` ON `${TABLE_NAME}` (`id_usuario`)"
+          },
+          {
+            "name": "index_favoritos_id_sendero",
+            "unique": false,
+            "columnNames": [
+              "id_sendero"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_favoritos_id_sendero` ON `${TABLE_NAME}` (`id_sendero`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "senderos",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "id_sendero"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "usuarios",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "id_usuario"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "completados",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id_sendero` INTEGER NOT NULL, `id_usuario` INTEGER NOT NULL, PRIMARY KEY(`id_usuario`, `id_sendero`), FOREIGN KEY(`id_sendero`) REFERENCES `senderos`(`id`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`id_usuario`) REFERENCES `usuarios`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "senderoId",
+            "columnName": "id_sendero",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "usuarioId",
+            "columnName": "id_usuario",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id_usuario",
+            "id_sendero"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_completados_id_usuario",
+            "unique": false,
+            "columnNames": [
+              "id_usuario"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_completados_id_usuario` ON `${TABLE_NAME}` (`id_usuario`)"
+          },
+          {
+            "name": "index_completados_id_sendero",
+            "unique": false,
+            "columnNames": [
+              "id_sendero"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_completados_id_sendero` ON `${TABLE_NAME}` (`id_sendero`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "senderos",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "id_sendero"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "usuarios",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "id_usuario"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "selectDificultad",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`nombre` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `create_at` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "nombre",
+            "columnName": "nombre",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createAt",
+            "columnName": "create_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_selectDificultad_nombre",
+            "unique": true,
+            "columnNames": [
+              "nombre"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_selectDificultad_nombre` ON `${TABLE_NAME}` (`nombre`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "dificultades",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id_selectDificultad` INTEGER NOT NULL, `id_sendero` INTEGER NOT NULL, PRIMARY KEY(`id_selectDificultad`, `id_sendero`), FOREIGN KEY(`id_sendero`) REFERENCES `senderos`(`id`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`id_selectDificultad`) REFERENCES `usuarios`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "usuarioId",
+            "columnName": "id_selectDificultad",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "senderoId",
+            "columnName": "id_sendero",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id_selectDificultad",
+            "id_sendero"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_dificultades_id_selectDificultad",
+            "unique": false,
+            "columnNames": [
+              "id_selectDificultad"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_dificultades_id_selectDificultad` ON `${TABLE_NAME}` (`id_selectDificultad`)"
+          },
+          {
+            "name": "index_dificultades_id_sendero",
+            "unique": false,
+            "columnNames": [
+              "id_sendero"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_dificultades_id_sendero` ON `${TABLE_NAME}` (`id_sendero`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "senderos",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "id_sendero"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "usuarios",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "id_selectDificultad"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '15632d14732df5f5eb7d7cd18b165c0a')"
+    ]
+  }
+}
