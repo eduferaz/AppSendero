@@ -31,7 +31,7 @@ abstract class AppDatabase : RoomDatabase() {
     companion object { //static
         private lateinit var db: AppDatabase
 
-        fun initDB(context: Context): AppDatabase{
+        fun initDB(context: Context): AppDatabase {
             if (!this::db.isInitialized) { //Sigleton
                 db = Room.databaseBuilder(context, AppDatabase::class.java, "database-name")
                     .addCallback(callback)
@@ -46,7 +46,7 @@ abstract class AppDatabase : RoomDatabase() {
                 super.onCreate(db)
                 GlobalScope.launch {
                     //Insercción de datos
-                    withContext(Dispatchers.IO){
+                    withContext(Dispatchers.IO) {
                         App.getDatabase().usuarioDao().save(Usuario("eduardo", "123456"))
                         App.getDatabase().selectDificultadDao().insertAll(
                             SelectDificultad("Dificultad Baja"),
@@ -54,9 +54,12 @@ abstract class AppDatabase : RoomDatabase() {
                             SelectDificultad("Dificultad Alta")
                         )
                         App.getDatabase().municipioDao().insertAll(
-                            MunicipioEntidad(("Cazalla de la Sierra")), MunicipioEntidad("El Pedroso"),
-                            MunicipioEntidad("Constantina"), MunicipioEntidad("Las Navas de la Concepción"),
-                            MunicipioEntidad("San Nicolás del Puerto"), MunicipioEntidad("Alanís")
+                            MunicipioEntidad(("Cazalla de la Sierra")),
+                            MunicipioEntidad("El Pedroso"),
+                            MunicipioEntidad("Constantina"),
+                            MunicipioEntidad("Las Navas de la Concepción"),
+                            MunicipioEntidad("San Nicolás del Puerto"),
+                            MunicipioEntidad("Alanís")
                         )
                         App.getDatabase().senderoDao().save(
                             SenderoEntidad(
@@ -66,7 +69,7 @@ abstract class AppDatabase : RoomDatabase() {
                                         "ofrece al senderista la oportunidad de aproximarse a los paisajes y valores más representativos " +
                                         "del Parque Natural Sierra Norte de Sevilla, desde los más o menos modificados, como ruedos agrícolas " +
                                         "o dehesas con ganadería extensiva, a los que conservan en mayor medida sus rasgos naturales, como el " +
-                                        "bosque de galería.\n" +"El sendero se inicia en lo que se conoce como Vereda del valle o Camino " +
+                                        "bosque de galería.\n" + "El sendero se inicia en lo que se conoce como Vereda del valle o Camino " +
                                         "de las Laderas de Cazalla y prosigue en descenso hasta la Rivera del Huesna, pudiéndose contemplar " +
                                         "en su recorrido un rico mosaico de huertas, olivares y bosque mediterráneo. El regreso es por el " +
                                         "Camino Viejo de la Estación, y muestra antiguos viñedos, vestigios de un cultivo muy importante " +
@@ -78,10 +81,8 @@ abstract class AppDatabase : RoomDatabase() {
                             )
                         )
                     }
-
                 }
             }
         }
     }
-
 }
