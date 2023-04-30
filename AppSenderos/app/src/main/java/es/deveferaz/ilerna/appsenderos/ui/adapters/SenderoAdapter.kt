@@ -1,7 +1,6 @@
 package es.deveferaz.ilerna.appsenderos.ui.adapters
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableStringBuilder
@@ -29,16 +28,14 @@ class SenderoAdapter(
         private val listener: SenderoListener,
         private val context: Context
     ) : RecyclerView.ViewHolder(binding.root) {
-
-        //Tomamos los objetos de la clase detalle sendero como entrada y se actualiza la vista con los datos de ese objeto
+        
         fun rellenarDatos(data: DetalleSendero) {
             binding.root.setOnClickListener {
                 listener.details(data)
             }
             binding.nombre.text = data.senderoEntidad.nombre
-            val resaltado = SpannableStringBuilder(binding.nombre.text) // Crea un objeto SpannableStringBuilder con el nombre
+            val resaltado = SpannableStringBuilder(binding.nombre.text)
 
-// Aplica un estilo negrita y subrayado al nombre
             resaltado.setSpan(
                 StyleSpan(Typeface.BOLD),
                 0,
@@ -52,7 +49,6 @@ class SenderoAdapter(
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
 
-// Establece el texto resaltado en el TextView
             binding.nombre.text = resaltado
             binding.distancia.text = context.getString(R.string.show_distancia, data.senderoEntidad.distanciaKm)
             binding.municipio.text = data.municipio
