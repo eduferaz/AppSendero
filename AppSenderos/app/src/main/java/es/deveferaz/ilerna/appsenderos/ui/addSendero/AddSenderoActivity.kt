@@ -42,7 +42,7 @@ import es.deveferaz.ilerna.appsenderos.database.entities.SenderoEntidad
 import es.deveferaz.ilerna.appsenderos.database.relations.DetalleSendero
 import es.deveferaz.ilerna.appsenderos.databinding.ActivityAddSenderoBinding
 import es.deveferaz.ilerna.appsenderos.ui.home.MunicipioFragment
-import es.deveferaz.ilerna.appsenderos.utils.GetAddressFromLatLng
+import es.deveferaz.ilerna.appsenderos.utils.GetSenderoFromLatLng
 import kotlinx.coroutines.launch
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -169,9 +169,9 @@ class AddSenderoActivity : AppCompatActivity() {
                 mLongitude = mLastLocation!!.longitude
                 Log.i("Current Longitude", "$mLongitude")
 
-                val addressTask = GetAddressFromLatLng(this@AddSenderoActivity, mLatitude, mLongitude)
+                val addressTask = GetSenderoFromLatLng(this@AddSenderoActivity, mLatitude, mLongitude)
                 addressTask.setAddressListener(
-                    object : GetAddressFromLatLng.AddressListener {
+                    object : GetSenderoFromLatLng.AddressListener {
                         val tieUbicacion = binding.tieUbicacion
                         override suspend fun onAddressFound(address: String?) {
                             Log.e("Adress ::", "" + address)
@@ -179,7 +179,7 @@ class AddSenderoActivity : AppCompatActivity() {
                         }
 
                         override suspend fun onError() {
-                            TODO("Not yet implemented")
+                            Log.e("Get Sendero ::", "Algo falló...")
                         }
                     }
                 )
@@ -197,12 +197,10 @@ class AddSenderoActivity : AppCompatActivity() {
 
         binding.tieUbicacion.setOnClickListener {
             try {
-                // These are the list of fields which we required is passed
                 val fields = listOf(
                     Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG,
                     Place.Field.ADDRESS
                 )
-                // Start the autocomplete intent with a unique request code.
                 val intent = Autocomplete.IntentBuilder(
                     AutocompleteActivityMode.FULLSCREEN, fields
                 ).build(this)
@@ -239,7 +237,6 @@ class AddSenderoActivity : AppCompatActivity() {
                                 }
                             }
                         }
-
                         override fun onPermissionRationaleShouldBeShown(
                             permissions: MutableList<PermissionRequest>?,
                             token: PermissionToken?

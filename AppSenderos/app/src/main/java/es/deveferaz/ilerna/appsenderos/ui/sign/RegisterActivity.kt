@@ -7,9 +7,8 @@ import androidx.activity.viewModels
 import es.deveferaz.ilerna.appsenderos.R
 import es.deveferaz.ilerna.appsenderos.app.App
 import es.deveferaz.ilerna.appsenderos.database.entities.Usuario
-import es.deveferaz.ilerna.appsenderos.databinding.ActivityLoginBinding
 import es.deveferaz.ilerna.appsenderos.databinding.ActivityRegisterBinding
-import es.deveferaz.ilerna.appsenderos.ui.HomeActivity
+import es.deveferaz.ilerna.appsenderos.ui.MainActivity
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -50,7 +49,7 @@ class RegisterActivity : AppCompatActivity() {
             if (!it) {
                 App.showSnackbar(binding.root, getString(R.string.error_crear_usuario))
             } else {
-                startActivity(Intent(this, HomeActivity::class.java))
+                startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
         }

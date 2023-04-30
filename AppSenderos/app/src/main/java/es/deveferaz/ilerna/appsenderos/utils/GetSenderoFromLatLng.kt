@@ -11,7 +11,7 @@ import kotlinx.coroutines.withContext
 import java.io.IOException
 import java.util.Locale
 
-class GetAddressFromLatLng(
+class GetSenderoFromLatLng(
     context: Context,
     private val latitude: Double,
     private val longitude: Double

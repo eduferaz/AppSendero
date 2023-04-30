@@ -11,6 +11,14 @@ import es.deveferaz.ilerna.appsenderos.utils.HomeViewModel
 
 
 class SenderoFragment : Fragment() {
+    /**
+     * Este fragmento muestra una lista de senderos en un
+     * RecyclerView y se encarga de actualizar la UI cuando
+     * los datos cambian. Utiliza el patrón de diseño MVVM
+     * (Model-View-ViewModel) a través de la clase HomeViewModel
+     * y Data Binding para separar la lógica de la UI de la lógica
+     * de negocio y facilitar la gestión del estado de la aplicación.
+     */
 
     private var _binding: FragmentSenderosBinding? = null
     private val binding get() = _binding!!

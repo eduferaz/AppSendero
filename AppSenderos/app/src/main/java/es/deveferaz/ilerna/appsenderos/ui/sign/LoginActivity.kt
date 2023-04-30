@@ -8,7 +8,7 @@ import es.deveferaz.ilerna.appsenderos.R
 import es.deveferaz.ilerna.appsenderos.app.App
 import es.deveferaz.ilerna.appsenderos.database.entities.Usuario
 import es.deveferaz.ilerna.appsenderos.databinding.ActivityLoginBinding
-import es.deveferaz.ilerna.appsenderos.ui.HomeActivity
+import es.deveferaz.ilerna.appsenderos.ui.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
 
         val usuario = App.getUsuario()
         usuario?.let {
-            startActivity(Intent(this, HomeActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
 
@@ -49,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
             if (!it.result) {
                 App.showSnackbar(binding.root, it.msg)
             } else {
-                startActivity(Intent(this, HomeActivity::class.java))
+                startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
         }

@@ -45,7 +45,7 @@
             android:name=".ui.addSendero.AddSenderoActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.HomeActivity"
+            android:name=".ui.MainActivity"
             android:exported="false" />
         <activity
             android:name=".ui.sign.RegisterActivity"

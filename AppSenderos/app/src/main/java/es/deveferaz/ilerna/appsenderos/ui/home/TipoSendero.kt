@@ -12,6 +12,15 @@ enum class TipoSendero(val tipo: Int) {
     GENERAL(1), FAVORITOS(2), COMPLETADOS(3)
 }
 
+/**
+ * Utilizamos este enum para determinar que lista de senderos
+ * mostrar en las diferentes partes de la aplicación
+ * De esta manera se simplifica el proceso de configuración
+ * y visualización del RecyclerView en diferentes partes
+ * de la aplicación, haciendo que el código se más
+ * reutilizable y fácil de mantener
+ */
+
 class CommonFragmentImpl(
     val senderoListener: SenderoListener,
     val context: Context,

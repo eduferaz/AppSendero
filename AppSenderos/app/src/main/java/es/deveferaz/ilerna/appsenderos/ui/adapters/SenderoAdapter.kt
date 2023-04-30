@@ -28,7 +28,7 @@ class SenderoAdapter(
         private val listener: SenderoListener,
         private val context: Context
     ) : RecyclerView.ViewHolder(binding.root) {
-        
+
         fun rellenarDatos(data: DetalleSendero) {
             binding.root.setOnClickListener {
                 listener.details(data)

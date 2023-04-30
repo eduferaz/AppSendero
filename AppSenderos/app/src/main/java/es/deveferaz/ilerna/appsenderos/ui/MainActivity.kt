@@ -2,7 +2,6 @@ package es.deveferaz.ilerna.appsenderos.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -18,7 +17,7 @@ import es.deveferaz.ilerna.appsenderos.databinding.NavHeaderHomeBinding
 import es.deveferaz.ilerna.appsenderos.ui.addSendero.AddSenderoActivity
 import es.deveferaz.ilerna.appsenderos.ui.sign.LoginActivity
 
-class HomeActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityHomeBinding
