@@ -35,7 +35,7 @@ class SenderoDetailActivity : AppCompatActivity() {
             binding.descripcion.text = data.senderoEntidad.descrpcion
             binding.municipio.text = data.municipio
             binding.distancia.text = getString(R.string.show_distancia, data.senderoEntidad.distanciaKm)
-            binding.ubicacion.text = getString(R.string.externo)
+            binding.ubicacion.text = data.senderoEntidad.ubicacion
             binding.btnViewOnMap.setOnClickListener {
                 val mapIntent = Intent(this, MapsActivity::class.java)
                 mapIntent.putExtra(Constantes.SENDERO, mDetailSendero)

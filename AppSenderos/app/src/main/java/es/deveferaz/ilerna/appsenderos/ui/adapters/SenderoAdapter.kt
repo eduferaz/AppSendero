@@ -32,8 +32,8 @@ class SenderoAdapter(
             binding.nombre.text = data.senderoEntidad.nombre
             binding.distancia.text = context.getString(R.string.show_distancia, data.senderoEntidad.distanciaKm)
             binding.municipio.text = data.municipio
-            binding.ubicacion.text = context.getString(R.string.externo)
-            binding.ubicacion.setTextColor(Color.MAGENTA)
+            binding.ubicacion.text = data.senderoEntidad.ubicacion
+            binding.ubicacion.setTextColor(Color.BLUE)
             binding.ubicacion.setOnClickListener {
                 listener.open(data)
             }
