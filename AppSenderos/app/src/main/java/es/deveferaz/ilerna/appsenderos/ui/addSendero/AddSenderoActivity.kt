@@ -5,8 +5,15 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import es.deveferaz.ilerna.appsenderos.R
 import es.deveferaz.ilerna.appsenderos.app.Constantes
 import es.deveferaz.ilerna.appsenderos.app.Constantes.Companion.ALTADIFICULTAD
@@ -15,7 +22,7 @@ import es.deveferaz.ilerna.appsenderos.app.Constantes.Companion.MEDIADIFICULTAD
 import es.deveferaz.ilerna.appsenderos.database.entities.SenderoEntidad
 import es.deveferaz.ilerna.appsenderos.database.relations.DetalleSendero
 import es.deveferaz.ilerna.appsenderos.databinding.ActivityAddSenderoBinding
-import es.deveferaz.ilerna.appsenderos.ui.dialogs.MunicipioDialog
+import es.deveferaz.ilerna.appsenderos.ui.home.MunicipioFragment
 
 class AddSenderoActivity : AppCompatActivity() {
 
@@ -23,6 +30,24 @@ class AddSenderoActivity : AppCompatActivity() {
     private val viewModel: AddSenderoViewModel by viewModels()
 
     private var municipioId = -1L
+
+    private var mLatitude: Double = 0.0 // Guardamos los datos de latitud en esta variable.
+    private var mLongitude: Double = 0.0 // Guardamos los datos de longitud en esta variable.
+    private lateinit var mFusedLocationClient: FusedLocationProviderClient
+    // Esta variable se utiliza obtener la localización actual del usuario.
+
+    private val autocompleteLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val sendero : Place = Autocomplete.getPlaceFromIntent(result.data!!)
+            val tieUbicacion = binding.tieUbicacion
+            tieUbicacion.setText(sendero.address)
+            mLatitude = sendero.latLng!!.latitude
+            mLongitude = sendero.latLng!!.longitude
+        }
+
+    }
 
     private lateinit var detalleSendero: DetalleSendero
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +62,8 @@ class AddSenderoActivity : AppCompatActivity() {
             binding.tieDescripcion.setText(detalleSendero.senderoEntidad.descrpcion)
             binding.tieImagen.setText(detalleSendero.senderoEntidad.imagen)
             binding.tieUbicacion.setText(detalleSendero.senderoEntidad.ubicacion)
+            mLatitude = detalleSendero.senderoEntidad.latitude
+            mLongitude = detalleSendero.senderoEntidad.longitude
             binding.tieDistancia.setText(detalleSendero.senderoEntidad.distanciaKm.toString())
 
             if (detalleSendero.altadificultad){
@@ -70,18 +97,44 @@ class AddSenderoActivity : AppCompatActivity() {
                 ){
                     municipioId = it[position].id
                 }
-
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    // write code to perform some action
+                    // Función implementada por el object del spinner
                 }
             }
+        }
+        //Inicializar FusedLocation
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        // Inicializar Places SDK en el método onCreate de la Activity
+        if (!Places.isInitialized()){
+            Places.initialize(this@AddSenderoActivity,
+                resources.getString(R.string.google_maps_api_key))
         }
     }
 
     override fun onStart() {
         super.onStart()
+
+        binding.tieUbicacion.setOnClickListener {
+            try {
+                // These are the list of fields which we required is passed
+                val fields = listOf(
+                    Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG,
+                    Place.Field.ADDRESS
+                )
+                // Start the autocomplete intent with a unique request code.
+                val intent = Autocomplete.IntentBuilder(
+                    AutocompleteActivityMode.FULLSCREEN, fields
+                ).build(this)
+
+                autocompleteLauncher.launch(intent)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+
         binding.newMunicipio.setOnClickListener{
-            val senderoFragment = MunicipioDialog()
+            val senderoFragment = MunicipioFragment()
             senderoFragment.show(supportFragmentManager, "municipio")
         }
 
@@ -110,6 +163,8 @@ class AddSenderoActivity : AppCompatActivity() {
                 nombre,
                 descripcion,
                 ubicacion,
+                mLatitude,
+                mLongitude,
                 imagen,
                 distancia.toDouble(),
                 municipioId

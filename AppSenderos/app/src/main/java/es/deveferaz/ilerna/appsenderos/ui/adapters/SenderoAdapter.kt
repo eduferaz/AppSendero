@@ -11,12 +11,12 @@ import es.deveferaz.ilerna.appsenderos.R
 import es.deveferaz.ilerna.appsenderos.database.relations.DetalleSendero
 import es.deveferaz.ilerna.appsenderos.databinding.SenderoBinding
 
-class SenderosRecyclerViewAdapter(
+class SenderoAdapter(
     val list: List<DetalleSendero>,
     private val listener: SenderoListener,
     val context: Context
 ):
-        RecyclerView.Adapter<SenderosRecyclerViewAdapter.ViewHolder>() {
+        RecyclerView.Adapter<SenderoAdapter.ViewHolder>() {
 
     class ViewHolder private constructor(
         private val binding: SenderoBinding,
@@ -35,7 +35,7 @@ class SenderosRecyclerViewAdapter(
             binding.ubicacion.text = context.getString(R.string.externo)
             binding.ubicacion.setTextColor(Color.MAGENTA)
             binding.ubicacion.setOnClickListener {
-                listener.open(data.senderoEntidad.ubicacion)
+                listener.open(data)
             }
             binding.edit.setOnClickListener {
                 listener.edit(data)
@@ -107,7 +107,7 @@ class SenderosRecyclerViewAdapter(
 }
 
 interface SenderoListener {
-    fun open(url: String)
+    fun open(detalleSendero: DetalleSendero)
     fun addFavorito(id: Long)
     fun delFavorito(id: Long)
     fun addCompletado(id: Long)

@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import es.deveferaz.ilerna.appsenderos.databinding.FragmentSenderosBinding
+import es.deveferaz.ilerna.appsenderos.utils.HomeViewModel
 
 
-class PathFragment : Fragment() {
+class SenderoFragment : Fragment() {
 
     private var _binding: FragmentSenderosBinding? = null
     private val binding get() = _binding!!

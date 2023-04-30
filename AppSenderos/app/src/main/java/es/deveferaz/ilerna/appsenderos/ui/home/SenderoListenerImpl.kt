@@ -7,7 +7,8 @@ import es.deveferaz.ilerna.appsenderos.app.Constantes
 import es.deveferaz.ilerna.appsenderos.database.relations.DetalleSendero
 import es.deveferaz.ilerna.appsenderos.ui.adapters.SenderoListener
 import es.deveferaz.ilerna.appsenderos.ui.addSendero.AddSenderoActivity
-import es.deveferaz.ilerna.appsenderos.ui.dialogs.SenderoDialog
+import es.deveferaz.ilerna.appsenderos.utils.HomeViewModel
+import es.deveferaz.ilerna.appsenderos.utils.MapsActivity
 
 class SenderoListenerImpl (
     val context: Context,
@@ -21,10 +22,12 @@ class SenderoListenerImpl (
         context.startActivity(intent)
     }
 
-    override fun open(url: String) {
-        val browserIntent = Intent(context, MapsFragment::class.java)
-        context.startActivity(browserIntent)
+    override fun open(detalleSendero: DetalleSendero) { // Cambia el argumento de la función a DetalleSendero
+        val mapIntent = Intent(context, MapsActivity::class.java)
+        mapIntent.putExtra(Constantes.SENDERO, detalleSendero.senderoEntidad) // Envía el objeto SenderoEntidad como extra
+        context.startActivity(mapIntent)
     }
+
 
     override fun addFavorito(id: Long) {
         viewModel.addFav(id)
@@ -43,8 +46,8 @@ class SenderoListenerImpl (
     }
 
     override fun details(detalleSendero: DetalleSendero) {
-        val senderoFragment = SenderoDialog(detalleSendero)
-        senderoFragment.show(fragmentManager, Constantes.SENDERO)
+        val intent = Intent(context, SenderoDetailActivity::class.java)
+        intent.putExtra(Constantes.SENDERO, detalleSendero)
+        context.startActivity(intent)
     }
-
 }

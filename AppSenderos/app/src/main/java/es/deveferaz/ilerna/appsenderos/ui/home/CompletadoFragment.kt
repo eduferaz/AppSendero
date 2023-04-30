@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import es.deveferaz.ilerna.appsenderos.databinding.FragmentSenderosBinding
+import es.deveferaz.ilerna.appsenderos.utils.HomeViewModel
 
 class CompletadoFragment : Fragment() {
     private var _binding: FragmentSenderosBinding? = null

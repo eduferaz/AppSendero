@@ -9,4 +9,9 @@
     <dimen name="default_margin">10dp</dimen>
     <dimen name="double_default">20dp</dimen>
     <dimen name="mini">8dp</dimen>
+    <dimen name="button_radius">10dp</dimen>
+    <dimen name="image_border_stroke_size">0.5dp</dimen>
+    <dimen name="add_place_image_shape_radius">3dp</dimen>
+    <dimen name="add_place_select_current_location_padding">10dp</dimen>
+    <dimen name="add_place_select_current_location_textsize">16sp</dimen>
 </resources>

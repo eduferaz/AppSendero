@@ -43,11 +43,6 @@ class HomeActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        return true
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_home)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()

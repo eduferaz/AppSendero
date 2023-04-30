@@ -85,7 +85,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_margin"
-                android:hint="@string/ubicacion"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_90"
                 app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10"
                 app:layout_constraintTop_toBottomOf="@+id/til_description">
@@ -93,7 +93,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tie_ubicacion"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/ubicacion"
+                    android:inputType="text"
+                    tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -129,6 +134,22 @@
                     android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/tv_select_current_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:background="@drawable/shape_image_view_border"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:padding="@dimen/add_place_select_current_location_padding"
+                android:text="@string/add_place_select_current_location_text"
+                android:textColor="@color/md_theme_light_onPrimaryContainer"
+                android:textSize="@dimen/add_place_select_current_location_textsize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/til_distancia" />
+
             <LinearLayout
                 android:id="@+id/ll_municipio"
                 android:layout_width="0dp"
@@ -137,7 +158,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_90"
                 app:layout_constraintStart_toStartOf="@+id/guideline_vertical_10"
-                app:layout_constraintTop_toBottomOf="@+id/til_distancia">
+                app:layout_constraintTop_toBottomOf="@+id/tv_select_current_location">
 
                 <Spinner
                     android:id="@+id/spinner_municipio"
@@ -175,17 +196,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip_alta"
-                    android:text="@string/alta_dificultad"/>
+                    android:text="@string/dificil"/>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip_media"
-                    android:text="@string/media_dificultad"/>
+                    android:text="@string/media"/>
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/chip_baja"
-                    android:text="@string/baja_dificultad" />
+                    android:text="@string/fail" />
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton

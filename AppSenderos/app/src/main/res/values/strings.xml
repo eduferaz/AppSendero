@@ -29,11 +29,18 @@
     <string name="eliminar">Eliminar</string>
     <string name="ubicacion">Ubicación</string>
     <string name="name">Nombre</string>
-    <string name="distancia">distancia en km</string>
-    <string name="alta_dificultad">Difícil</string>
-    <string name="media_dificultad">Medio</string>
-    <string name="baja_dificultad">Fácil</string>
+    <string name="distancia">Km</string>
+    <string name="alta_dificultad">Recorrido de alta dificultad</string>
+    <string name="media_dificultad">Recorrido de media dificultad</string>
+    <string name="baja_dificultad">Recorrido de baja dificultad</string>
+    <string name="dificil">Dificil</string>
+    <string name="media">Media</string>
+    <string name="fail">Facil</string>
     <string name="show_distancia">%2.2f km</string>
     <string name="latitud">Latitud</string>
     <string name="longitud">Longitud</string>
+    <string name="btn_text_view_on_map">VER EN EL MAPA</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="add_place_select_current_location_text">UBICACION ACTUAL</string>
+    <string name="google_maps_api_key">AIzaSyAv0dgfXrhq2VB72-TBv5sZuuVkvqTjTro</string>
 </resources>

@@ -1,4 +1,4 @@
-package es.deveferaz.ilerna.appsenderos.ui.dialogs
+package es.deveferaz.ilerna.appsenderos.ui.home
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -12,7 +12,7 @@ import es.deveferaz.ilerna.appsenderos.database.entities.MunicipioEntidad
 import es.deveferaz.ilerna.appsenderos.databinding.FragmentMunicipioBinding
 import es.deveferaz.ilerna.appsenderos.ui.addSendero.AddSenderoViewModel
 
-class MunicipioDialog : DialogFragment() {
+class MunicipioFragment : DialogFragment() {
     lateinit var binding: FragmentMunicipioBinding
     private val addSenderoViewModel: AddSenderoViewModel by viewModels()
 

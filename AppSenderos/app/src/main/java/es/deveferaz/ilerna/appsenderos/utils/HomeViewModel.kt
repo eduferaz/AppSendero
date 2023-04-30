@@ -1,4 +1,4 @@
-package es.deveferaz.ilerna.appsenderos.ui.home
+package es.deveferaz.ilerna.appsenderos.utils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +8,7 @@ import es.deveferaz.ilerna.appsenderos.app.App
 import es.deveferaz.ilerna.appsenderos.database.entities.Completado
 import es.deveferaz.ilerna.appsenderos.database.entities.Favorito
 import es.deveferaz.ilerna.appsenderos.database.relations.DetalleSendero
+import es.deveferaz.ilerna.appsenderos.ui.home.TipoSendero
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
