@@ -2,8 +2,14 @@ package es.deveferaz.ilerna.appsenderos.ui.adapters
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Typeface
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.StyleSpan
+import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
@@ -30,10 +36,29 @@ class SenderoAdapter(
                 listener.details(data)
             }
             binding.nombre.text = data.senderoEntidad.nombre
+            val resaltado = SpannableStringBuilder(binding.nombre.text) // Crea un objeto SpannableStringBuilder con el nombre
+
+// Aplica un estilo negrita y subrayado al nombre
+            resaltado.setSpan(
+                StyleSpan(Typeface.BOLD),
+                0,
+                binding.nombre.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            resaltado.setSpan(
+                UnderlineSpan(),
+                0,
+                binding.nombre.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+
+// Establece el texto resaltado en el TextView
+            binding.nombre.text = resaltado
             binding.distancia.text = context.getString(R.string.show_distancia, data.senderoEntidad.distanciaKm)
             binding.municipio.text = data.municipio
             binding.ubicacion.text = data.senderoEntidad.ubicacion
-            binding.ubicacion.setTextColor(Color.BLUE)
+            binding.ubicacion.setTextColor(ContextCompat.getColor(context, R.color.md_theme_dark_errorContainer))
+
             binding.ubicacion.setOnClickListener {
                 listener.open(data)
             }
