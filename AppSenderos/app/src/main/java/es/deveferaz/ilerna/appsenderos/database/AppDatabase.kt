@@ -74,7 +74,7 @@ abstract class AppDatabase : RoomDatabase() {
                                         "en su recorrido un rico mosaico de huertas, olivares y bosque mediterráneo. El regreso es por el " +
                                         "Camino Viejo de la Estación, y muestra antiguos viñedos, vestigios de un cultivo muy importante " +
                                         "antaño en la comarca del que permanecen viejos lagares.",
-                                "Sendero de las Laderas",
+                                "",
                                 37.92757081435537,
                                 -5.755008457440394,
                                 "https://lh3.googleusercontent.com/p/AF1QipNL25IWDXosbqcczRZ0JG6ElRql-yq4fUwPebSn=s680-w680-h510",

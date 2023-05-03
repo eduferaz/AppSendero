@@ -54,7 +54,4 @@ data class DetalleSendero(
             return arrayOfNulls(size)
         }
     }
-
-
-
 }
